@@ -1,0 +1,8 @@
+{
+  "name": "report-generation-frontend",
+  "version": "1.0.0",
+  "description": "Frontend-only income and expense report dashboard with premium CSV export",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

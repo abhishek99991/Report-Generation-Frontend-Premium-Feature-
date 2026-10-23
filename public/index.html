@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Income and expense report dashboard" />
+  <title>Finora | Reports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Finora home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>finora</span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <a class="nav-item" href="#"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item" href="#"><span class="nav-icon">↔</span> Transactions</a>
+        <a class="nav-item" href="#"><span class="nav-icon">◷</span> Budgets</a>
+        <a class="nav-item active" href="#reports"><span class="nav-icon">▤</span> Reports <span class="nav-dot"></span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>Need a hand?</strong>
+          <p>Visit our help center for tips and answers.</p>
+          <a href="#help">Visit help center <span>↗</span></a>
+        </div>
+        <button class="profile-button" type="button">
+          <div class="avatar">AS</div>
+          <span class="profile-copy"><strong>Alex Smith</strong><small>Personal account</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="reports">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Reports</strong></div>
+        <div class="topbar-actions">
+          <button class="icon-button" aria-label="Notifications">♧<i></i></button>
+          <div class="top-avatar">AS</div>
+        </div>
+      </header>
+
+      <section class="page-heading">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR MONEY, IN FOCUS</div>
+          <h1>Financial reports<span>.</span></h1>
+          <p class="subtitle">Understand your money habits and make every dollar count.</p>
+        </div>
+        <div class="heading-date"><span class="calendar-icon">▦</span><span><small>REPORT DATE</small><strong id="todayLabel">October 23, 2026</strong></span></div>
+      </section>
+
+      <section class="report-toolbar" aria-label="Report filters">
+        <div class="period-tabs" role="group" aria-label="Choose report period">
+          <button class="period-button" data-period="daily">Daily</button>
+          <button class="period-button" data-period="weekly">Weekly</button>
+          <button class="period-button selected" data-period="monthly">Monthly</button>
+          <button class="period-button" data-period="all">All time</button>
+        </div>
+        <div class="toolbar-right">
+          <label class="date-select-wrap"><span class="sr-only">Choose date</span><select id="dateSelect" aria-label="Choose report month"><option value="2026-10">October 2026</option><option value="2026-09">September 2026</option><option value="2026-08">August 2026</option></select><span class="select-chevron">⌄</span></label>
+          <button class="download-button" id="downloadButton"><span class="download-icon">↓</span><span>Download report</span><span class="premium-chip" id="premiumChip">PRO</span></button>
+        </div>
+      </section>
+
+      <div class="premium-note" id="premiumNote" role="status"><span class="lock-icon">♙</span><span><strong>Report downloads are a Premium feature.</strong> Upgrade to export your transactions as a CSV file.</span><button id="upgradeButton">Explore Premium <span>↗</span></button></div>
+
+      <section class="summary-grid" aria-label="Income and expense summary">
+        <article class="summary-card balance-card">
+          <div class="card-top"><span class="card-label">Net balance</span><span class="summary-icon balance-icon">◈</span></div>
+          <div class="amount" id="balanceAmount">$2,840.50</div>
+          <div class="card-foot"><span class="trend-pill positive">↗ 8.2%</span><span>vs. previous period</span></div>
+          <div class="mini-bars" aria-hidden="true"><i style="height:28%"></i><i style="height:42%"></i><i style="height:35%"></i><i style="height:58%"></i><i style="height:47%"></i><i style="height:72%"></i><i style="height:61%"></i><i style="height:88%"></i><i style="height:67%"></i><i style="height:100%"></i><i style="height:78%"></i><i style="height:92%"></i></div>
+        </article>
+        <article class="summary-card">
+          <div class="card-top"><span class="card-label">Total income</span><span class="summary-icon income-icon">↙</span></div>
+          <div class="amount" id="incomeAmount">$4,250.00</div>
+          <div class="card-foot"><span class="trend-pill positive">↗ 12.5%</span><span>vs. previous period</span></div>
+          <div class="progress-track"><span class="income-progress" id="incomeProgress"></span></div>
+          <div class="progress-caption"><span>Income received</span><strong id="incomeCount">8 transactions</strong></div>
+        </article>
+        <article class="summary-card">
+          <div class="card-top"><span class="card-label">Total expenses</span><span class="summary-icon expense-icon">↗</span></div>
+          <div class="amount" id="expenseAmount">$1,409.50</div>
+          <div class="card-foot"><span class="trend-pill negative">↘ 3.4%</span><span>vs. previous period</span></div>
+          <div class="progress-track"><span class="expense-progress" id="expenseProgress"></span></div>
+          <div class="progress-caption"><span>Budget used</span><strong id="budgetUsed">42% of $3,350</strong></div>
+        </article>
+      </section>
+
+      <section class="insights-grid">
+        <article class="panel cashflow-panel">
+          <div class="panel-heading"><div><h2>Cash flow</h2><p>Your income vs. expenses over time</p></div><span class="legend"><i class="legend-income"></i> Income <i class="legend-expense"></i> Expenses</span></div>
+          <div class="chart-summary"><div><small>Income</small><strong id="chartIncome">$4,250.00</strong></div><div><small>Expenses</small><strong id="chartExpenses">$1,409.50</strong></div></div>
+          <div class="chart-wrap"><div class="y-axis"><span>$5k</span><span>$4k</span><span>$3k</span><span>$2k</span><span>$1k</span><span>$0</span></div><div class="chart-area"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i><i></i></div><svg id="cashflowChart" viewBox="0 0 700 220" preserveAspectRatio="none" role="img" aria-label="Bar chart comparing income and expenses"><g id="chartBars"></g></svg><div class="x-axis" id="chartLabels"><span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Week 4</span></div></div></div>
+        </article>
+        <article class="panel category-panel">
+          <div class="panel-heading"><div><h2>Spending breakdown</h2><p>Where your money goes</p></div><button class="more-button" aria-label="More spending options">···</button></div>
+          <div class="donut-layout"><div class="donut" id="spendingDonut"><div class="donut-center"><strong id="donutTotal">$1,409</strong><span>Total spent</span></div></div><div class="category-legend" id="categoryLegend"></div></div>
+          <div class="category-foot"><span class="tiny-check">✓</span> <span>You're keeping your spending in check.</span></div>
+        </article>
+      </section>
+
+      <section class="panel transactions-panel">
+        <div class="panel-heading transactions-heading"><div><h2>Transaction history</h2><p>Every dollar, accounted for.</p></div><div class="transaction-controls"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search transactions..." aria-label="Search transactions" /></label><select id="typeFilter" aria-label="Filter by transaction type"><option value="all">All types</option><option value="income">Income</option><option value="expense">Expenses</option></select></div></div>
+        <div class="table-scroll"><table><thead><tr><th>TRANSACTION</th><th>CATEGORY</th><th>DATE</th><th>TYPE</th><th class="amount-heading">AMOUNT</th></tr></thead><tbody id="transactionRows"></tbody></table></div>
+        <div class="table-footer"><span id="transactionCountLabel">Showing 6 transactions</span><div class="pagination"><button id="previousPage" aria-label="Previous page" disabled>←</button><span id="pageLabel">1 / 1</span><button id="nextPage" aria-label="Next page" disabled>→</button></div></div>
+      </section>
+      <footer class="page-footer"><span>© 2026 Finora Finance</span><span>Made for better money habits <b>♥</b></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
